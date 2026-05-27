@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROXIMA — Качественный газ для газгольдера</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #1a1e26;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Dark industrial background overlay */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(20,24,32,0.97) 38%, rgba(20,24,32,0.55) 65%, rgba(20,24,32,0.2) 100%),
+      url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600&q=80') center/cover no-repeat;
+    z-index: 0;
+  }
+
+  /* Extra dark tint overlay */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,18,25,0.45);
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 50px 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo .logo-o {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e87722;
+    border-radius: 50%;
+    margin: 0 1px;
+    position: relative;
+  }
+  .logo .logo-o::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 44px;
+    background: #e87722;
+    transform: rotate(45deg);
+  }
+
+  .header-right { text-align: right; }
+  .phone {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+  .urgent {
+    color: #e87722;
+    font-size: .88rem;
+    cursor: pointer;
+    margin-top: 3px;
+    display: inline-block;
+    border-bottom: 1px solid #e87722;
+  }
+
+  /* ── HERO CONTENT ── */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 50px 30px;
+    max-width: 560px;
+  }
+
+  .hero-content h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: #e87722;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: fadeUp .7s ease both;
+  }
+
+  .gas-mix {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 18px 0 10px;
+    animation: fadeUp .7s .15s ease both;
+  }
+  .gas-pct {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #e87722;
+    line-height: 1;
+  }
+  .gas-label {
+    font-size: .78rem;
+    color: #bbb;
+    margin-left: 6px;
+    line-height: 1.3;
+  }
+  .gas-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,.25);
+    margin: 0 22px;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.5;
+    margin: 10px 0 32px;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .btn-order {
+    display: inline-block;
+    background: #e87722;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    animation: fadeUp .7s .45s ease both;
+    max-width: 320px;
+  }
+  .btn-order:hover { background: #d06510; transform: translateY(-2px); }
+
+  /* Truck image positioned right */
+  .truck-img {
+    position: absolute;
+    right: -30px;
+    bottom: 180px;
+    width: 62%;
+    max-width: 780px;
+    z-index: 5;
+    animation: fadeIn 1s .2s ease both;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.6));
+  }
+
+  /* ── FEATURES BAR ── */
+  .features {
+    position: relative;
+    z-index: 10;
+    background: rgba(12,15,22,0.88);
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .feature {
+    padding: 28px 28px 32px;
+    border-right: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: background .2s;
+  }
+  .feature:last-child { border-right: none; }
+  .feature:hover { background: rgba(232,119,34,.08); }
+
+  .feature-img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    opacity: .85;
+    transition: opacity .2s;
+  }
+  .feature:hover .feature-img { opacity: 1; }
+
+  .feature h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e87722;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    line-height: 1.3;
+  }
+  .feature p {
+    font-size: .82rem;
+    color: #aaa;
+    line-height: 1.65;
+  }
+  .feature p strong { color: #fff; }
+
+  /* ── FOOTER LINKS ── */
+  .footer-links {
+    position: relative;
+    z-index: 10;
+    background: rgba(10,13,20,0.9);
+    padding: 14px 50px;
+    display: flex;
+    gap: 40px;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer-links a {
+    font-size: .8rem;
+    color: #aaa;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: #fff; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 20px 20px 0; }
+    .hero-content { padding: 30px 20px 20px; max-width: 100%; }
+    .truck-img { display: none; }
+    .features { grid-template-columns: repeat(2, 1fr); }
+    .footer-links { padding: 14px 20px; flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <header>
+    <!-- LOGO -->
+    <a class="logo" href="#">
+      PR<span class="logo-o"></span>XIMA
+    </a>
+
+    <!-- PHONE -->
+    <div class="header-right">
+      <div class="phone">+7 (495) 877-32-92</div>
+      <span class="urgent">Срочный вопрос</span>
+    </div>
+  </header>
+
+  <!-- TRUCK -->
+  <img class="truck-img"
+    src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=85"
+    alt="Газовоз">
+
+  <!-- HERO TEXT -->
+  <div class="hero-content">
+    <h1>Качественный газ<br>для газгольдера</h1>
+
+    <div class="gas-mix">
+      <div>
+        <div class="gas-pct">80%</div>
+        <div class="gas-label">пропана</div>
+      </div>
+      <div class="gas-divider"></div>
+      <div>
+        <div class="gas-pct">20%</div>
+        <div class="gas-label">бутана</div>
+      </div>
+    </div>
+
+    <p class="hero-sub">Доставка в любое время дня и ночи<br>вне зависимости от погодных условий</p>
+
+    <a class="btn-order" href="#">Заказать доставку газа</a>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+
+    <div class="feature">
+      <img class="feature-img"
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80"
+        alt="Хранилище газа">
+      <h3>Экономия<br>на хранилище</h3>
+      <p>за счёт собственных цистерн на нашей базе вы экономите <strong>до 10%</strong> вашего бюджета</p>
+    </div>
+
+    <div class="feature">
+      <img class="feature-img"
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80"
+        alt="Газовоз транспорт">
+      <h3>Экономия<br>на транспорте</h3>
+      <p>более 10 собственных газовозов, которые экономят <strong>5–7%</strong> ваших денежных средств</p>
+    </div>
+
+    <div class="feature">
+      <img class="feature-img"
+        src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&q=80"
+        alt="Оплата картой">
+      <h3>Оплата удобным<br>для вас способом</h3>
+      <p>вы можете оплачивать как <strong>наличными</strong>, так и по <strong>терминалу</strong> который оборудован во все наши газовозы</p>
+    </div>
+
+    <div class="feature">
+      <img class="feature-img"
+        src="https://images.unsplash.com/photo-1545259742-f59a7fde35a6?w=400&q=80"
+        alt="Газовый баллон">
+      <h3>Любые объёмы<br>поставки качественного газа</h3>
+      <p>вы получаете объём от <strong>1 до 20 тонн</strong>, с сертификатом качества газа</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER LINKS -->
+  <div class="footer-links">
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">Согласие на обработку персональных данных</a>
+  </div>
+
+</section>
+
+</body>
+</html>
